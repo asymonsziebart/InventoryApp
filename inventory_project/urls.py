@@ -15,11 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+from inventory.views import download_asset_template, import_assets
+
+# Customize admin site
+admin.site.site_header = 'Ziebart IT Inventory App'  # Change the Django admin header
+admin.site.site_title = 'Ziebart IT Inventory'   # Change the browser tab title
+admin.site.index_title = 'Inventory Management'  # Change the index page title
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='admin/', permanent=False), name='index'),
     path('admin/', admin.site.urls),
-    path('', admin.site.urls),  # Redirect root to admin interface
+    path('admin/inventory/asset/download-template/', download_asset_template, name='download_asset_template'),
+    path('admin/inventory/asset/import-csv/', import_assets, name='import_assets'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

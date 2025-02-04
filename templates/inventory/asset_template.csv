@@ -1,0 +1,2 @@
+asset_tag,name,description,category,manufacturer,model_number,serial_number,status,purchase_date,warranty_expiry,purchase_cost,location,notes
+ASSET001,Example Laptop,Business laptop for staff,Laptops,Dell,Latitude 5420,SN123456,available,2024-02-04,2027-02-04,1200.00,Main Office,Sample asset entry 
